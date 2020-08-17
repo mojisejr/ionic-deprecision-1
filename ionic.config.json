@@ -1,0 +1,7 @@
+{
+  "name": "deprecisionCO",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
