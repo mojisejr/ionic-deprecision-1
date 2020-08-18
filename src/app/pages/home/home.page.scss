@@ -1,0 +1,39 @@
+.products-section {
+    height: 65vh;
+}
+
+.company-vision-box {
+    p {
+        line-height: 55px;
+    }
+}
+
+.large-title {
+    font-family: 'Oxygen', sans-serif;
+    font-size: 5rem;
+    font-weight: 800;
+    // color: var(--ion-color-secondary);
+}
+
+.product-silder-box {
+    // background-color: var(--ion-color-primary-tint);
+    border-left: 0.5px solid var(--ion-color-medium);
+    height: 100%;
+}
+
+.products-line {
+    height: 25vh;
+    // background-color: gainsboro;
+}
+
+ion-slides {
+    // background-color: var(--ion-color-primary-tint);
+    height: 100%;
+    ion-slide {
+        pointer-events: none;
+    }
+}
+
+ion-img {
+    height: 90%;
+}

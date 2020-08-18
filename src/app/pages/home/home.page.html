@@ -1,0 +1,108 @@
+<ion-menu side="start" contentId="main" menuId="mainMenu">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title class="logo-font">
+        Deprecision.CO
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-item button>
+        <ion-label>
+          Products
+        </ion-label>
+      </ion-item>
+      <ion-item button>
+        <ion-label>
+          Document and Guide
+        </ion-label>
+      </ion-item>
+      <ion-item button>
+        <ion-label>
+          Contact Us
+        </ion-label>
+      </ion-item>
+      <ion-item button>
+        <ion-label>
+          About
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-content class="ion-no-padding" id="main">
+  <ion-toolbar color="primary">
+    <ion-title class="logo-font">Deprecision.co</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="openMenu()">
+        <ion-icon slot="icon-only" name="menu"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-grid>
+    <ion-row class="products-section">
+      <ion-col size='6'>
+        <div class="company-vision-box ion-padding">
+          <p>
+            <ion-text class="large-title">Vision</ion-text>
+          </p>
+          <p>
+            <ion-text class="large-title">Target</ion-text>
+          </p>
+          <p>
+            <ion-text class="large-title">in 4 Lines</ion-text>
+          </p>
+          <p>
+            <ion-text class="large-title" color="primary">Deprecision.CO</ion-text>
+          </p>
+        </div>
+      </ion-col>
+      <ion-col size="6">
+        <div class="product-silder-box">
+          <ion-slides [pager]="true">
+            <ion-slide>
+              <ion-img src="../../../assets/images/pic1.png"></ion-img>
+            </ion-slide>
+            <ion-slide>
+              <ion-img src="../../../assets/images/pic2.png"></ion-img>
+            </ion-slide>
+            <ion-slide>
+              <ion-img src="../../../assets/images/pic3.png"></ion-img>
+            </ion-slide>
+            <ion-slide>
+              <ion-img src="../../../assets/images/pic4.png"></ion-img>
+            </ion-slide>
+          </ion-slides>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="products-line">
+      <ion-col size="3">
+        <app-product-card 
+        iconName="fitness-outline" 
+        title="Heart Surgery" 
+        text="The smart system for very fine sergical process."></app-product-card>
+      </ion-col>
+      <ion-col size="3">
+        <app-product-card 
+        iconName="cut-outline" 
+        title="Med. Scissors" 
+        text="Germany material grade for all purpose."></app-product-card>
+      </ion-col>
+      <ion-col size="3">
+        <app-product-card 
+        iconName="desktop-outline" 
+        title="Monitor System" 
+        text="Vital sign monitor system, Made to order all platform app."></app-product-card>
+      </ion-col>
+      <ion-col size="3">
+        <app-product-card 
+        iconName="watch-outline" 
+        title="Track ME." 
+        text="Track ME, medical critical alarm for monitoring and tracking."></app-product-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
