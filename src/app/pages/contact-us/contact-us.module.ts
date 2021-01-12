@@ -4,10 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { HomePageRoutingModule } from './home-routing.module';
+import { ContactUsPageRoutingModule } from './contact-us-routing.module';
 
-import { HomePage } from './home.page';
-import { ProductCardComponent } from 'src/app/components/product-card/product-card.component';
+import { ContactUsPage } from './contact-us.page';
 import { MenubarComponent } from 'src/app/components/menubar/menubar.component';
 
 @NgModule({
@@ -15,8 +14,8 @@ import { MenubarComponent } from 'src/app/components/menubar/menubar.component';
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule
+    ContactUsPageRoutingModule,
   ],
-  declarations: [HomePage, ProductCardComponent, MenubarComponent]
+  declarations: [ContactUsPage, MenubarComponent]
 })
-export class HomePageModule {}
+export class ContactUsPageModule {}

@@ -1,0 +1,46 @@
+<app-menubar [config]="menubar"></app-menubar>
+<ion-content id="main">
+  <ion-toolbar color="primary">
+      <ion-title class="logo-font">
+        <a class="logo-font" routerLink="/home">Deprecision.co</a></ion-title>
+      <ion-buttons slot="primary">
+        <ion-button (click)="openMenu()">
+          <ion-icon slot="icon-only" name="menu"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+
+    <ion-grid>
+        <ion-row class="address-section">
+            <ion-col size-sm="6" size="12" offset-sm="3" class="ion-text-center map-col">
+                <div class="iframe-warpper">
+                  <iframe class="iframe-responsive" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3876.4179340392247!2d100.69585031502271!3d13.69311899038549!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDQxJzM1LjIiTiAxMDDCsDQxJzUyLjkiRQ!5e0!3m2!1sth!2sth!4v1598884551852!5m2!1sth!2sth" 
+                  frameborder="0" 
+                  style="border:0;" 
+                  allowfullscreen="" 
+                  aria-hidden="false" 
+                  tabindex="0"></iframe>
+                </div>
+            </ion-col>
+            <ion-col size-sm="6" size="12" offset-sm="3" class="right-box">
+              <ion-grid>
+                  <ion-row>
+                    <ion-col size-md="12" offset-md="0">
+                        <div class="address-container ion-padding ion-text-center">
+                            <h1>Address</h1>
+                            <p><ion-text color=primary>Deprecision Limited Partnership</ion-text></p>
+                            <p>75. Premium Timehome Village</p>
+                            <p>Soi 01, Karnchanapisek 44</p>
+                            <p>Dok Mai Prawet, Bangkok</p>
+                            <p>10250</p>
+                            <p>(+66) 095 - 1654819</p>
+                            <p>02 - 1306819(fax)</p>
+                            <p>de_precision@outlook.co.th</p>
+                        </div>
+                    </ion-col>
+                  </ion-row>
+              </ion-grid>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

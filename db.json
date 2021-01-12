@@ -1,0 +1,24 @@
+{
+  "products": [
+    {
+      "props": {
+        "name": "Emergency Tolley",
+        "serialNo": "AC-ET001",
+        "details": "Size: 850 x 520 x 1020 mm",
+        "brand": "ZHANGJIAGANG",
+        "category": "Tolley"
+      },
+      "id": 1
+    },
+    {
+      "props": {
+        "name": "Emergency Tolley",
+        "serialNo": "AC-ET001",
+        "details": "Size: 850 x 520 x 1020 mm",
+        "brand": "ZHANGJIAGANG",
+        "category": "Tolley"
+      },
+      "id": 2
+    }
+  ]
+}

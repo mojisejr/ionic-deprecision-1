@@ -1,39 +1,79 @@
 .products-section {
-    height: 65vh;
+  height: 63vh;
 }
 
 .company-vision-box {
-    p {
-        line-height: 55px;
-    }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    height: 20rem;
+    // width: 200px;
+    object-fit: cover;
+  }
 }
 
 .large-title {
-    font-family: 'Oxygen', sans-serif;
-    font-size: 5rem;
-    font-weight: 800;
-    // color: var(--ion-color-secondary);
+  font-family: "Oxygen", sans-serif;
+  font-size: 5rem;
+  font-weight: 800;
+  // color: var(--ion-color-secondary);
 }
 
 .product-silder-box {
-    // background-color: var(--ion-color-primary-tint);
-    border-left: 0.5px solid var(--ion-color-medium);
-    height: 100%;
+  // background-color: var(--ion-color-primary-tint);
+  border-left: 0.5px solid var(--ion-color-medium);
+  height: 80%;
 }
 
 .products-line {
-    height: 25vh;
-    // background-color: gainsboro;
+  height: 25vh;
+  // background-color: gainsboro;
 }
 
 ion-slides {
-    // background-color: var(--ion-color-primary-tint);
-    height: 100%;
-    ion-slide {
-        pointer-events: none;
-    }
+  // background-color: var(--ion-color-primary-tint);
+  height: 90%;
+  ion-slide {
+    pointer-events: none;
+  }
 }
 
 ion-img {
-    height: 90%;
+  height: 80%;
+}
+
+.address-section {
+  height: 100vh;
+}
+// .map-col {
+//     // background-color: var(--ion-color-light);
+// }
+.iframe-wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 56.25%;
+}
+
+.iframe-responsive {
+  position: absolute;
+  top: 15%;
+  left: 10%;
+  bottom: 0;
+  right: 0;
+  width: 80%;
+  height: 100%;
+}
+
+.right-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.address-container {
+  border-radius: 20px;
+  background-color: var(--ion-color-light);
+  // box-shadow: 1px 2px 3px var(--ion-color-medium);
 }

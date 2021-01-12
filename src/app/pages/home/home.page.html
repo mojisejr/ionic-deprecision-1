@@ -1,40 +1,9 @@
-<ion-menu side="start" contentId="main" menuId="mainMenu">
-  <ion-header>
-    <ion-toolbar color="primary">
-      <ion-title class="logo-font">
-        Deprecision.CO
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content>
-    <ion-list>
-      <ion-item button>
-        <ion-label>
-          Products
-        </ion-label>
-      </ion-item>
-      <ion-item button>
-        <ion-label>
-          Document and Guide
-        </ion-label>
-      </ion-item>
-      <ion-item button>
-        <ion-label>
-          Contact Us
-        </ion-label>
-      </ion-item>
-      <ion-item button>
-        <ion-label>
-          About
-        </ion-label>
-      </ion-item>
-    </ion-list>
-  </ion-content>
-</ion-menu>
+<app-menubar [config]="menubar"></app-menubar>
 
 <ion-content class="ion-no-padding" id="main">
   <ion-toolbar color="primary">
-    <ion-title class="logo-font">Deprecision.co</ion-title>
+    <ion-title>
+      <a routerLink="/home" class="logo-font">Deprecision.co</a></ion-title>
     <ion-buttons slot="primary">
       <ion-button (click)="openMenu()">
         <ion-icon slot="icon-only" name="menu"></ion-icon>
@@ -45,7 +14,7 @@
     <ion-row class="products-section">
       <ion-col size='6'>
         <div class="company-vision-box ion-padding">
-          <p>
+          <!-- <p>
             <ion-text class="large-title">Vision</ion-text>
           </p>
           <p>
@@ -53,26 +22,18 @@
           </p>
           <p>
             <ion-text class="large-title">in 4 Lines</ion-text>
-          </p>
-          <p>
+          </p> -->
+          <img src="../../../assets/images/LOGO.jpg">
+          <!-- <p>
             <ion-text class="large-title" color="primary">Deprecision.CO</ion-text>
-          </p>
+          </p> -->
         </div>
       </ion-col>
       <ion-col size="6">
         <div class="product-silder-box">
           <ion-slides [pager]="true">
-            <ion-slide>
-              <ion-img src="../../../assets/images/pic1.png"></ion-img>
-            </ion-slide>
-            <ion-slide>
-              <ion-img src="../../../assets/images/pic2.png"></ion-img>
-            </ion-slide>
-            <ion-slide>
-              <ion-img src="../../../assets/images/pic3.png"></ion-img>
-            </ion-slide>
-            <ion-slide>
-              <ion-img src="../../../assets/images/pic4.png"></ion-img>
+            <ion-slide *ngFor="let products of productImages">
+              <ion-img [src]="products"></ion-img>
             </ion-slide>
           </ion-slides>
         </div>
@@ -102,6 +63,18 @@
         iconName="watch-outline" 
         title="Track ME." 
         text="Track ME, medical critical alarm for monitoring and tracking."></app-product-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col *ngFor="let item of products">
+        <ion-item>
+          <ion-label>id:</ion-label>
+          <p>{{ item.id }}</p>
+        </ion-item>
+        <ion-item>
+          <ion-label>name:</ion-label>
+          <p>{{ item.brand }}</p>
+        </ion-item>
       </ion-col>
     </ion-row>
   </ion-grid>
