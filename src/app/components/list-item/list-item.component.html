@@ -1,0 +1,16 @@
+<ion-item button (click)="onItemClicked(product)">
+  <ion-thumbnail slot="start">
+    <ion-icon
+      *ngIf="!product.imageUrl"
+      name="eye-off-outline"
+      size="large"
+    ></ion-icon>
+    <img *ngIf="product.imageUrl" [src]="product.imageUrl" />
+  </ion-thumbnail>
+  <ion-label
+    >{{ product.modelNo }}
+    <p>{{ product.brand }}</p>
+    <p>{{ product.type }}</p>
+    <p>{{ product.category }}</p>
+  </ion-label>
+</ion-item>

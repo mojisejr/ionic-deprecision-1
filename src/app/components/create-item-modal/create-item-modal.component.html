@@ -1,0 +1,87 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Create New Product</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="onDismiss()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <form [formGroup]="productForm" (ngSubmit)="onFormSubmit(productForm)">
+    <ion-item>
+      <ion-label position="stacked">Model No.</ion-label>
+      <ion-input
+        type="text"
+        placeholder="product model or serial number"
+        formControlName="modelNo"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Type</ion-label>
+      <ion-input
+        type="text"
+        placeholder="product type: eg. Tolley"
+        formControlName="type"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Category</ion-label>
+      <ion-input
+        type="text"
+        placeholder="product category: eg. Emergency Tolley"
+        formControlName="category"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Brand</ion-label>
+      <ion-input
+        type="text"
+        placeholder="product brand"
+        formControlName="brand"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">details</ion-label>
+      <ion-input
+        type="text"
+        placeholder="product details"
+        formControlName="details"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">size</ion-label>
+      <ion-input
+        type="text"
+        placeholder="width,length,height in mm, eg. 500,750,900"
+        formControlName="size"
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Configurations</ion-label>
+      <ion-input
+        type="text"
+        placeholder="configuration spread with ',' eg. 3 drawers, medical tank holder"
+        formControlName="configurations"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Image Url</ion-label>
+      <ion-input
+        type="text"
+        placeholder="only image from google drive available"
+        formControlName="imageUrl"
+      ></ion-input>
+    </ion-item>
+    <ion-button expand="full" [disabled]="!productForm.valid" type="submit"
+      >Save</ion-button
+    >
+  </form>
+</ion-content>

@@ -1,30 +1,102 @@
 import { Injectable } from "@angular/core";
-import { Product, ProductProps } from "../models/product.model";
-import { ProductRepository } from '../repositories/product.repository';
-
+import { Product, productProps } from "./../models/productModel";
+import { Mapper } from "./../utils/mapper";
+import axios from "axios";
+import { environment } from "./../../environments/environment";
+import { Subject } from "rxjs";
+import { findIndexFromObjectId } from "./../utils/helper";
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: "root",
 })
 export class ProductService {
-    constructor(
-        private productRepository: ProductRepository
-    ) {
-    }
-    buildProduct(props: ProductProps): Product {
-        if(props === null || props === undefined) {
-            throw new Error("product props cannot be null or undefined");
-        }
+  private state = {
+    product: {} as Product,
+    products: [] as Array<Product>,
+    recommendedProducts: [] as Array<Product>,
+    productsChanged: new Subject<Product[]>(),
+  };
 
-        return new Product(props);
-    }
+  createNewProduct(productData: productProps) {
+    const newProduct = Product.buildProduct(productData);
+    this.state.product = newProduct;
+  }
 
-    async save(product: Product) {
-        const response = await this.productRepository.save(product);
-        console.log(response);
+  async saveNewProduct() {
+    if (!this.state.product) {
+      throw new Error("no new product created");
     }
+    const productToPersist = Mapper.toPersist(this.state.product);
+    const productResponse = await axios.post(
+      environment.productRoutes,
+      productToPersist
+    );
+    if (productResponse.status !== 201) {
+      throw new Error("cannot create product please try again");
+    }
+    const product = Mapper.toProduct(productResponse.data.data.products);
+    this.state.products.push(product);
+    this.state.productsChanged.next(this.state.products);
+  }
 
-    async loadCollection(): Promise<Product[]> {
-         return await this.productRepository.loadCollection();
+  async fetchProducts() {
+    const productResponse = await axios.get(environment.productRoutes);
+    // console.log("product", productResponse);
+    this.state.products = Mapper.toItemList(productResponse.data.data.data);
+    this.state.productsChanged.next(this.state.products);
+  }
+
+  async deleteProduct(id: String) {
+    if (!id) {
+      return;
     }
+    // await axios.delete(`${environment.databaseUrl}/${id}`);
+    const deletedIndex = findIndexFromObjectId(this.state.products, id);
+    axios.delete(`${environment.productRoutes}/${id}`).then(() => {
+      this.state.products.splice(deletedIndex, 1);
+    });
+  }
+
+  async markProductAsRecommended(id: String) {
+    if (!id) {
+      return;
+    }
+    let product = this.state.products.find((product) => product._id == id);
+
+    product.recommend = !product.recommend;
+    const index = findIndexFromObjectId(this.state.products, id);
+    this.state.products[index] = product;
+    this.state.productsChanged.next(this.state.products);
+    await this.updateProduct(id, { recommend: product.recommend });
+  }
+
+  getProducts() {
+    this.state.productsChanged.next(this.state.products);
+  }
+
+  getRecommended() {
+    const sortedProduct = this.state.products.filter(
+      (product) => product.recommend === true
+    );
+    this.state.recommendedProducts = sortedProduct;
+    this.state.productsChanged.next(sortedProduct);
+  }
+
+  async updateProduct(id: String, data: any) {
+    console.log("update data", data);
+    const updatedProduct = await axios.patch(
+      `${environment.productRoutes}/${id}`,
+      {
+        ...data,
+      },
+      {
+        withCredentials: true,
+      }
+    );
+    // console.log("updatedProduct", updatedProduct);
+  }
+
+  getProductsListener() {
+    return this.state.productsChanged.asObservable();
+  }
 }

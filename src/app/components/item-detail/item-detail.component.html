@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Product Detail</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="onDismiss()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-img [src]="product.imageUrl"></ion-img>
+  <ion-list>
+    <ion-item>
+      <ion-label>Brand</ion-label>
+      <ion-note slot="end" class="item" color="secondary">{{
+        product.brand
+      }}</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Model</ion-label>
+      <ion-note slot="end" class="item" color="secondary">{{
+        product.modelNo
+      }}</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Type</ion-label>
+      <ion-note slot="end" class="item" color="secondary">{{
+        product.type
+      }}</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Category</ion-label>
+      <ion-note slot="end" class="item" color="secondary">{{
+        product.category
+      }}</ion-note>
+    </ion-item>
+
+    <ion-item *ngIf="product.size">
+      <ion-label>Size</ion-label>
+      <ion-note slot="end" class="item" color="secondary">
+        {{ product.size ? sizeTransform(product.size) : "" }}
+      </ion-note>
+    </ion-item>
+
+    <ion-item *ngIf="product.details">
+      <ion-label
+        >Details
+        <p>{{ product.details ? product.details : "" }}</p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item *ngIf="product.configurations">
+      <ion-label
+        >Configurations
+        <p *ngFor="let configuration of product.configurations; index as i">
+          {{ i + 1 }}. {{ configuration ? configuration : "" }}
+        </p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Mark as recommended</ion-label>
+      <ion-note slot="end" class="item" color="secondary">{{
+        product.recommend ? "yes" : "no"
+      }}</ion-note>
+    </ion-item>
+  </ion-list>
+  <ion-toolbar>
+    <ion-buttons slot="primary">
+      <ion-button (click)="onDelete()" color="danger">Delete</ion-button>
+      <ion-button (click)="onMarkAsRecommended()"
+        >mark as recommeded</ion-button
+      >
+    </ion-buttons>
+  </ion-toolbar>
+</ion-content>

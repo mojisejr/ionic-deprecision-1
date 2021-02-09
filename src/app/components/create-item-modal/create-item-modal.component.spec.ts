@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { MenubarComponent } from './menubar.component';
+import { CreateItemModalComponent } from './create-item-modal.component';
 
-describe('MenubarComponent', () => {
-  let component: MenubarComponent;
-  let fixture: ComponentFixture<MenubarComponent>;
+describe('CreateItemModalComponent', () => {
+  let component: CreateItemModalComponent;
+  let fixture: ComponentFixture<CreateItemModalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MenubarComponent ],
+      declarations: [ CreateItemModalComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(MenubarComponent);
+    fixture = TestBed.createComponent(CreateItemModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

@@ -1,80 +1,49 @@
-<app-menubar [config]="menubar"></app-menubar>
-
-<ion-content class="ion-no-padding" id="main">
-  <ion-toolbar color="primary">
-    <ion-title>
-      <a routerLink="/home" class="logo-font">Deprecision.co</a></ion-title>
+<ion-header>
+  <ion-toolbar>
+    <ion-title
+      >User :
+      <span *ngIf="loggedInUser | async let user;"
+        >{{ user.name }}</span
+      ></ion-title
+    >
     <ion-buttons slot="primary">
-      <ion-button (click)="openMenu()">
-        <ion-icon slot="icon-only" name="menu"></ion-icon>
-      </ion-button>
+      <ion-button (click)="onCreateNewProduct()">New Product</ion-button>
+      <ion-button>Abouts</ion-button>
+      <ion-button *ngIf="loggedInUser | async" (click)="onSignOut()"
+        >Sign Out</ion-button
+      >
     </ion-buttons>
   </ion-toolbar>
+</ion-header>
+<ion-content>
   <ion-grid>
-    <ion-row class="products-section">
-      <ion-col size='6'>
-        <div class="company-vision-box ion-padding">
-          <!-- <p>
-            <ion-text class="large-title">Vision</ion-text>
-          </p>
-          <p>
-            <ion-text class="large-title">Target</ion-text>
-          </p>
-          <p>
-            <ion-text class="large-title">in 4 Lines</ion-text>
-          </p> -->
-          <img src="../../../assets/images/LOGO.jpg">
-          <!-- <p>
-            <ion-text class="large-title" color="primary">Deprecision.CO</ion-text>
-          </p> -->
-        </div>
-      </ion-col>
-      <ion-col size="6">
-        <div class="product-silder-box">
-          <ion-slides [pager]="true">
-            <ion-slide *ngFor="let products of productImages">
-              <ion-img [src]="products"></ion-img>
-            </ion-slide>
-          </ion-slides>
-        </div>
-      </ion-col>
-    </ion-row>
-    <ion-row class="products-line">
-      <ion-col size="3">
-        <app-product-card 
-        iconName="fitness-outline" 
-        title="Heart Surgery" 
-        text="The smart system for very fine sergical process."></app-product-card>
-      </ion-col>
-      <ion-col size="3">
-        <app-product-card 
-        iconName="cut-outline" 
-        title="Med. Scissors" 
-        text="Germany material grade for all purpose."></app-product-card>
-      </ion-col>
-      <ion-col size="3">
-        <app-product-card 
-        iconName="desktop-outline" 
-        title="Monitor System" 
-        text="Vital sign monitor system, Made to order all platform app."></app-product-card>
-      </ion-col>
-      <ion-col size="3">
-        <app-product-card 
-        iconName="watch-outline" 
-        title="Track ME." 
-        text="Track ME, medical critical alarm for monitoring and tracking."></app-product-card>
-      </ion-col>
-    </ion-row>
     <ion-row>
-      <ion-col *ngFor="let item of products">
-        <ion-item>
-          <ion-label>id:</ion-label>
-          <p>{{ item.id }}</p>
-        </ion-item>
-        <ion-item>
-          <ion-label>name:</ion-label>
-          <p>{{ item.brand }}</p>
-        </ion-item>
+      <ion-col size="6" offset-sm="2">
+        <div>
+          <p>sorting</p>
+          <div>
+            <ion-button (click)="onShotAllProduct()">all</ion-button>
+            <ion-button (click)="onShowRecommended()">recommended</ion-button>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="products | async; let products">
+      <ion-col size="8" offset-sm="2">
+        <ion-list>
+          <ion-list-header>
+            <ion-title>Product List</ion-title>
+          </ion-list-header>
+          <app-list-item
+            *ngFor="let product of products"
+            [product]="product"
+          ></app-list-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="!products | async">
+      <ion-col>
+        <h1>No Item</h1>
       </ion-col>
     </ion-row>
   </ion-grid>
