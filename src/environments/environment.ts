@@ -1,14 +1,21 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
-const productionUrl = "https://dry-reef-08166.herokuapp.com/";
-const localhostUrl = "http://localhost:3000/";
+// export const environment = {
+//   production: true,
+//   productRoutes: "https://dry-reef-08166.herokuapp.com/api/v1/products",
+//   recommedRoute:
+//     "https://dry-reef-08166.herokuapp.com/api/v1/products?recommend=true",
+//   loginRoute: "https://dry-reef-08166.herokuapp.com/api/v1/users/login",
+//   logoutRoute: "https://dry-reef-08166.herokuapp.com/api/v1/users/logout",
+// };
+
 export const environment = {
-  production: true,
-  productRoutes: `${productionUrl}api/v1/products`,
-  recommedRoute: `${productionUrl}api/v1/products?recommend=true`,
-  loginRoute: `${productionUrl}api/v1/users/login`,
-  logoutRoute: `${productionUrl}api/v1/users/logout`,
+  production: false,
+  productRoutes: "http://localhost:3000/api/v1/products",
+  recommedRoute: "http://localhost:3000/api/v1/products?recommend=true",
+  loginRoute: "http://localhost:3000/api/v1/users/login",
+  logoutRoute: "http://localhost:3000/api/v1/users/logout",
 };
 
 /*

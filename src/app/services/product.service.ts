@@ -29,7 +29,12 @@ export class ProductService {
     const productToPersist = Mapper.toPersist(this.state.product);
     const productResponse = await axios.post(
       environment.productRoutes,
-      productToPersist
+      productToPersist,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
     );
     if (productResponse.status !== 201) {
       throw new Error("cannot create product please try again");
@@ -52,9 +57,15 @@ export class ProductService {
     }
     // await axios.delete(`${environment.databaseUrl}/${id}`);
     const deletedIndex = findIndexFromObjectId(this.state.products, id);
-    axios.delete(`${environment.productRoutes}/${id}`).then(() => {
-      this.state.products.splice(deletedIndex, 1);
-    });
+    axios
+      .delete(`${environment.productRoutes}/${id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then(() => {
+        this.state.products.splice(deletedIndex, 1);
+      });
   }
 
   async markProductAsRecommended(id: String) {
@@ -83,14 +94,17 @@ export class ProductService {
   }
 
   async updateProduct(id: String, data: any) {
-    console.log("update data", data);
+    // console.log("update data", data);
     const updatedProduct = await axios.patch(
       `${environment.productRoutes}/${id}`,
       {
         ...data,
       },
       {
-        withCredentials: true,
+        // withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
       }
     );
     // console.log("updatedProduct", updatedProduct);

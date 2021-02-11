@@ -41,7 +41,7 @@ export class HomePage implements OnInit {
 
     const productCreated = await createNewProductModal.onDidDismiss();
     if (productCreated.role === "created") {
-      console.log(productCreated.data);
+      // console.log(productCreated.data);
       this.productService.createNewProduct(productCreated.data);
       this.productService.saveNewProduct();
     }

@@ -9,22 +9,24 @@ import { environment } from "src/environments/environment";
   providedIn: "root",
 })
 export class AuthService {
+  private request = axios.create({
+    headers: {
+      "Content-Type": "application/json",
+    },
+    withCredentials: true,
+  });
   private state = {
     currentUser: {} as User,
     loggedInUserChanged: new BehaviorSubject<User>(null),
   };
   async signIn(email: string, password: string) {
     try {
-      const user = await axios.post(
-        environment.loginRoute,
-        {
-          email: email,
-          password: password,
-        },
-        {
-          withCredentials: true,
-        }
-      );
+      const user = await this.request.post(environment.loginRoute, {
+        email: email,
+        password: password,
+      });
+      const { token } = user.data;
+      localStorage.setItem("token", token);
       const loggedInUser: User = User.buildUser({
         _id: user.data.data.user._id,
         email: user.data.data.user.email,
@@ -39,14 +41,10 @@ export class AuthService {
   }
 
   async signOut() {
-    axios
-      .get(environment.logoutRoute, {
-        withCredentials: true,
-      })
-      .then((_) => {
-        this.state.currentUser = null;
-        this.state.loggedInUserChanged.next(null);
-      });
+    this.request.get(environment.logoutRoute).then((_) => {
+      this.state.currentUser = null;
+      this.state.loggedInUserChanged.next(null);
+    });
   }
 
   getAuthListener() {
